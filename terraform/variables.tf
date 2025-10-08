@@ -83,34 +83,10 @@ variable "subnet1_name" {
   default     = "FGExternal"
 }
 
-variable "subnet1_prefix" {
-  description = "Subnet 1 Prefix"
-  type        = string
-  default     = "10.0.1.0/24"
-}
-
-variable "subnet1_start_address" {
-  description = "Subnet 1 start address, 2 consecutive private IPs are required"
-  type        = string
-  default     = "10.0.1.5"
-}
-
 variable "subnet2_name" {
   description = "Subnet 2 Name (FortiGate Internal)"
   type        = string
   default     = "FGInternal"
-}
-
-variable "subnet2_prefix" {
-  description = "Subnet 2 Prefix"
-  type        = string
-  default     = "10.0.2.0/24"
-}
-
-variable "subnet2_start_address" {
-  description = "Subnet 2 start address, 3 consecutive private IPs are required"
-  type        = string
-  default     = "10.0.2.4"
 }
 
 variable "subnet3_name" {
@@ -119,34 +95,10 @@ variable "subnet3_name" {
   default     = "FGHA"
 }
 
-variable "subnet3_prefix" {
-  description = "Subnet 3 Prefix"
-  type        = string
-  default     = "10.0.3.0/24"
-}
-
-variable "subnet3_start_address" {
-  description = "Subnet 3 start address, 2 consecutive private IPs are required"
-  type        = string
-  default     = "10.0.3.5"
-}
-
 variable "subnet4_name" {
   description = "Subnet 4 Name (FortiGate Management)"
   type        = string
   default     = "FGMgmt"
-}
-
-variable "subnet4_prefix" {
-  description = "Subnet 4 Prefix"
-  type        = string
-  default     = "10.0.4.0/24"
-}
-
-variable "subnet4_start_address" {
-  description = "Subnet 4 start address, 2 consecutive private IPs are required"
-  type        = string
-  default     = "10.0.4.5"
 }
 
 variable "subnet5_name" {
@@ -155,52 +107,16 @@ variable "subnet5_name" {
   default     = "FWBExternal"
 }
 
-variable "subnet5_prefix" {
-  description = "Subnet 5 Prefix"
-  type        = string
-  default     = "10.0.5.0/24"
-}
-
-variable "subnet5_start_address" {
-  description = "Subnet 5 start address, 3 consecutive private IPs are required"
-  type        = string
-  default     = "10.0.5.5"
-}
-
 variable "subnet6_name" {
   description = "Subnet 6 Name (FortiWeb Internal)"
   type        = string
   default     = "FWBInternal"
 }
 
-variable "subnet6_prefix" {
-  description = "Subnet 6 Prefix"
-  type        = string
-  default     = "10.0.6.0/24"
-}
-
-variable "subnet6_start_address" {
-  description = "Subnet 6 start address, 2 consecutive private IPs are required"
-  type        = string
-  default     = "10.0.6.4"
-}
-
 variable "subnet7_name" {
   description = "Subnet 7 Name (DMZ Protected)"
   type        = string
   default     = "DMZProtectedA"
-}
-
-variable "subnet7_prefix" {
-  description = "Subnet 7 Prefix"
-  type        = string
-  default     = "10.0.10.0/24"
-}
-
-variable "subnet7_start_address" {
-  description = "Subnet 7 start address, 1 consecutive private IP is required"
-  type        = string
-  default     = "10.0.10.7"
 }
 
 variable "on_prem_range" {

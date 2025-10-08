@@ -23,7 +23,7 @@ locals {
           name                          = "${var.deployment_prefix}-ILB-${var.subnet2_name}-FrontEnd"
           public_ip_address_id          = null
           subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet2_name}"].id
-          private_ip_address            = var.subnet2_start_address
+          private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet2_name}"].address_prefixes[0], 4)
           private_ip_address_allocation = "Static"
         }]
       }

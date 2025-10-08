@@ -17,7 +17,7 @@ locals {
         name                          = "ipconfig1"
         subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet1_name}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = var.subnet1_start_address
+        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet1_name}"].address_prefixes[0], 5)
         public_ip_address_id          = null
         primary                       = true
       }]
@@ -35,7 +35,7 @@ locals {
         name                          = "ipconfig1"
         subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet2_name}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet2_name}"].address_prefixes[0], tonumber(split(".", var.subnet2_start_address)[3]) + 1)
+        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet2_name}"].address_prefixes[0], 5)
         public_ip_address_id          = null
         primary                       = true
       }]
@@ -53,7 +53,7 @@ locals {
         name                          = "ipconfig1"
         subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet3_name}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = var.subnet3_start_address
+        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet3_name}"].address_prefixes[0], 5)
         public_ip_address_id          = null
         primary                       = true
       }]
@@ -71,7 +71,7 @@ locals {
         name                          = "ipconfig1"
         subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet4_name}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = var.subnet4_start_address
+        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet4_name}"].address_prefixes[0], 5)
         public_ip_address_id          = var.enable_fortigate_mgmt_public_ips ? azurerm_public_ip.public_ip["${var.deployment_prefix}-fgt-a-mgmt-pip"].id : null
         primary                       = true
       }]
@@ -89,7 +89,7 @@ locals {
         name                          = "ipconfig1"
         subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet1_name}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet1_name}"].address_prefixes[0], tonumber(split(".", var.subnet1_start_address)[3]) + 1)
+        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet1_name}"].address_prefixes[0], 6)
         public_ip_address_id          = null
         primary                       = true
       }]
@@ -107,7 +107,7 @@ locals {
         name                          = "ipconfig1"
         subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet2_name}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet2_name}"].address_prefixes[0], tonumber(split(".", var.subnet2_start_address)[3]) + 2)
+        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet2_name}"].address_prefixes[0], 6)
         public_ip_address_id          = null
         primary                       = true
       }]
@@ -125,7 +125,7 @@ locals {
         name                          = "ipconfig1"
         subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet3_name}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet3_name}"].address_prefixes[0], tonumber(split(".", var.subnet3_start_address)[3]) + 1)
+        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet3_name}"].address_prefixes[0], 6)
         public_ip_address_id          = null
         primary                       = true
       }]
@@ -143,7 +143,7 @@ locals {
         name                          = "ipconfig1"
         subnet_id                     = azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet4_name}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet4_name}"].address_prefixes[0], tonumber(split(".", var.subnet4_start_address)[3]) + 1)
+        private_ip_address            = cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet4_name}"].address_prefixes[0], 6)
         public_ip_address_id          = var.enable_fortigate_mgmt_public_ips ? azurerm_public_ip.public_ip["${var.deployment_prefix}-fgt-b-mgmt-pip"].id : null
         primary                       = true
       }]
@@ -188,7 +188,7 @@ locals {
         var_ha_priority                 = 255
         var_ha_peer_ip                  = azurerm_network_interface.network_interface["${var.deployment_prefix}-fgt-b-nic3"].private_ip_address
         var_fgt_external_ipaddress      = azurerm_public_ip.public_ip["${var.deployment_prefix}-fgt-pip"].ip_address
-        var_dvwa_vm_ip                  = var.deploy_dvwa == "yes" ? var.subnet7_start_address : ""
+        var_dvwa_vm_ip                  = var.deploy_dvwa == "yes" ? cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet7_name}"].address_prefixes[0], 7) : ""
         var_deploy_dvwa                 = var.deploy_dvwa
         var_fortimanager                = var.fortimanager
         var_fortimanager_ip             = var.fortimanager_ip
@@ -263,7 +263,7 @@ locals {
         var_ha_priority                 = 1
         var_ha_peer_ip                  = azurerm_network_interface.network_interface["${var.deployment_prefix}-fgt-a-nic3"].private_ip_address
         var_fgt_external_ipaddress      = azurerm_public_ip.public_ip["${var.deployment_prefix}-fgt-pip"].ip_address
-        var_dvwa_vm_ip                  = var.deploy_dvwa == "yes" ? var.subnet7_start_address : ""
+        var_dvwa_vm_ip                  = var.deploy_dvwa == "yes" ? cidrhost(azurerm_subnet.subnet["${var.deployment_prefix}-${var.subnet7_name}"].address_prefixes[0], 7) : ""
         var_deploy_dvwa                 = var.deploy_dvwa
         var_fortimanager                = var.fortimanager
         var_fortimanager_ip             = var.fortimanager_ip

@@ -43,49 +43,49 @@ locals {
 
       name                 = var.subnet1_name
       virtual_network_name = azurerm_virtual_network.virtual_network[local.vnet_name].name
-      address_prefixes     = [var.subnet1_prefix]
+      address_prefixes     = [cidrsubnet(var.vnet_address_prefix, 8, 1)]
     }
     "${var.deployment_prefix}-${var.subnet2_name}" = {
       resource_group_name = azurerm_resource_group.resource_group[local.resource_group_name].name
 
       name                 = var.subnet2_name
       virtual_network_name = azurerm_virtual_network.virtual_network[local.vnet_name].name
-      address_prefixes     = [var.subnet2_prefix]
+      address_prefixes     = [cidrsubnet(var.vnet_address_prefix, 8, 2)]
     }
     "${var.deployment_prefix}-${var.subnet3_name}" = {
       resource_group_name = azurerm_resource_group.resource_group[local.resource_group_name].name
 
       name                 = var.subnet3_name
       virtual_network_name = azurerm_virtual_network.virtual_network[local.vnet_name].name
-      address_prefixes     = [var.subnet3_prefix]
+      address_prefixes     = [cidrsubnet(var.vnet_address_prefix, 8, 3)]
     }
     "${var.deployment_prefix}-${var.subnet4_name}" = {
       resource_group_name = azurerm_resource_group.resource_group[local.resource_group_name].name
 
       name                 = var.subnet4_name
       virtual_network_name = azurerm_virtual_network.virtual_network[local.vnet_name].name
-      address_prefixes     = [var.subnet4_prefix]
+      address_prefixes     = [cidrsubnet(var.vnet_address_prefix, 8, 4)]
     }
     "${var.deployment_prefix}-${var.subnet5_name}" = {
       resource_group_name = azurerm_resource_group.resource_group[local.resource_group_name].name
 
       name                 = var.subnet5_name
       virtual_network_name = azurerm_virtual_network.virtual_network[local.vnet_name].name
-      address_prefixes     = [var.subnet5_prefix]
+      address_prefixes     = [cidrsubnet(var.vnet_address_prefix, 8, 5)]
     }
     "${var.deployment_prefix}-${var.subnet6_name}" = {
       resource_group_name = azurerm_resource_group.resource_group[local.resource_group_name].name
 
       name                 = var.subnet6_name
       virtual_network_name = azurerm_virtual_network.virtual_network[local.vnet_name].name
-      address_prefixes     = [var.subnet6_prefix]
+      address_prefixes     = [cidrsubnet(var.vnet_address_prefix, 8, 6)]
     }
     "${var.deployment_prefix}-${var.subnet7_name}" = {
       resource_group_name = azurerm_resource_group.resource_group[local.resource_group_name].name
 
       name                 = var.subnet7_name
       virtual_network_name = azurerm_virtual_network.virtual_network[local.vnet_name].name
-      address_prefixes     = [var.subnet7_prefix]
+      address_prefixes     = [cidrsubnet(var.vnet_address_prefix, 8, 10)]
     }
   }
 
